@@ -1,42 +1,57 @@
 import { useState } from "react";
-import { calculatorButtons } from "../calculator-base-button-data";
+import { calculatorButtons } from "../calculator-bonus-03-button-data";
 
 function Calculator() {
   const [input, setInput] = useState("");
 
+  const handleSwitch = () => {
+    if (input.startsWith("-")) {
+      setInput(input.slice(1));
+    } else {
+      setInput("-" + input);
+    }
+  };
+
+  const handlePercent = () => {
+    setInput(String(input / 100));
+  };
+
   const handleInput = (value) => {
     setInput(input + value);
-    if (input.includes(Number)) {
+    if (typeof input !== "string") {
       setInput("");
     }
     console.log(value);
   };
 
-  const handleClear = () => {
+  const handleAllClear = () => {
     setInput("");
+  };
+
+  const handleClear = () => {
+    setInput(input.slice(0, -1));
   };
 
   const handleResult = () => {
-    setInput("");
-    if (input.length === 9) {
-      setInput("Error");
-    } else {
-      if (
-        input === null ||
-        input === "Infinity" ||
-        input === "NaN" ||
-        input === SyntaxError ||
-        input === undefined
-      ) {
-        setInput("Error");
+ 
+    try {
+      const result = eval(input);
+      console.log(result);
+      if (result === "Infinity" || result === undefined || result === Number.isNaN(result)) {
+        console.log(input);
+        setInput("");
+        // add alert
+        alert("Error Not a Number");
+      } else {
+        // things worked properly
+        setInput(String(eval(input)));
       }
-      setInput(eval(input));
+    } catch {
+      setInput("");
+      // add alert
+      alert("Error");
     }
-    console.log(eval(input));
-    return eval(input);
   };
-
-  // const handleResult = () => setInput((eval(input)));
 
   return (
     <>
@@ -48,7 +63,7 @@ function Calculator() {
               className="button all_clear_key"
               type="button"
               value={calculatorButtons.value}
-              onClick={handleClear}
+              onClick={handleAllClear}
             >
               AC
             </button>
@@ -60,6 +75,22 @@ function Calculator() {
               onClick={handleClear}
             >
               C
+            </button>
+
+            <button
+              className="button percent_key"
+              type="button"
+              onClick={handlePercent}
+            >
+              %
+            </button>
+
+            <button
+              className="button switch_key"
+              type="button"
+              onClick={handleSwitch}
+            >
+              +/-
             </button>
 
             <button

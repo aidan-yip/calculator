@@ -14,7 +14,7 @@
   font-weight: 400;
   color-scheme: light dark;
   color: #f2f2f2;
-  background-color: #1f1f1f;
+  background-color: #1d1d1d;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -66,7 +66,7 @@ main {
   background-color: #1a1a1a;
   border-radius: 1.5rem;
   padding: 1rem 0.5rem;
-  border: solid 1px #1a1a1a;
+  border: solid 1px #282828;
 }
 
 .flex_container.button_container {
@@ -174,18 +174,22 @@ button:active,
 }
 
 .clear_key,
-.all_clear_key {
-  width: 9rem;
+.all_clear_key,
+.switch_key,
+.percent_key {
+  width: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   background-color: #ff2222;
-  color: #fff;
+  color: #ffffff;
 }
 
 .clear_key:hover,
-.all_clear_key:hover {
+.all_clear_key:hover,
+.switch_key:hover,
+.percent_key:hover {
   background-color: #d30000;
   border: solid 1.5px #ffffff;
 }
